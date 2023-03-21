@@ -1,0 +1,35 @@
+CREATE TABLE Art_Supplies (id_num INTEGER, Item_name TEXT, Cost NUMERIC, Quantity INTEGER, Aisle INTEGER);
+
+INSERT INTO Art_Supplies VALUES (001, "Paint", 2.99, 15, 4);
+INSERT INTO Art_Supplies VALUES (036, "Paint brushes", 1.99, 10, 4);
+INSERT INTO Art_Supplies VALUES (075, "Card Stock", 10.89, 23, 10);
+INSERT INTO Art_Supplies VALUES (087, "Crayons", 2.99, 7, 6);
+INSERT INTO Art_Supplies VALUES (786, "Color Pencil", 1.49, 21, 8);
+INSERT INTO Art_Supplies VALUES (024, "Glue", 2.54, 15, 8);
+INSERT INTO Art_Supplies VALUES (243, "Markers", 3.49, 20, 8);
+INSERT INTO Art_Supplies VALUES (092, "Play Doh", 5.99, 11, 2);
+INSERT INTO Art_Supplies VALUES (735, "Contruction paper", 2.67, 26, 10);
+INSERT INTO Art_Supplies VALUES (853, "Note Book", 2.39, 27, 10);
+INSERT INTO Art_Supplies VALUES (264, "Scissors", 4.59, 19, 1);
+INSERT INTO Art_Supplies VALUES (852, "Organization Bin", 23.99, 32, 1);
+INSERT INTO Art_Supplies VALUES (519, "Pen", 1.99, 14, 9);
+INSERT INTO Art_Supplies VALUES (361, "Pipe Cleaners", 2.49, 16, 9);
+INSERT INTO Art_Supplies VALUES (492, "Tape", 2.49, 28, 8);
+
+-Art Supplies ordered by cost
+SELECT * 
+FROM Art_Supplies ORDER BY cost;
+
+-Art Supplies with more than quantity of 15
+SELECT Quantity, Item_name
+FROM Art_Supplies 
+WHERE Quantity > 15;
+
+-Art Supplies under cost of 10.00
+SELECT Cost, Item_name
+FROM Art_Supplies
+WHERE Cost < 10.00;
+
+
+
+
