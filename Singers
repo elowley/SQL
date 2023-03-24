@@ -1,0 +1,36 @@
+CREATE TABLE Singers (id INTEGER, fullname TEXT, AGE INTEGER);
+
+INSERT INTO Singers VALUES (1, "Selena Gomez", 30);
+INSERT INTO Singers VALUES (2, "Billie Eilish", 21);
+INSERT INTO Singers VALUES (3, "Ed Sherran", 32);
+INSERT INTO Singers VALUES (4, "Ariana Grande", 29);
+INSERT INTO Singers VALUES (5, "Justin Bieber", 29);
+INSERT INTO Singers VALUES (6, "Tim McGrw", 55);
+INSERT INTO Singers VALUES (7, "Luke Bryan",46);
+INSERT INTO Singers VALUES (8, "George Straight", 70);
+INSERT INTO Singers VALUES (9, "Alicia Keys", 42);
+INSERT INTO Singers VALUES (10, "Mariah Carey", 53);
+
+CREATE TABLE Songs (id INTEGER, name TEXT);
+INSERT INTO Songs VALUES (10, "It's a wrap");
+INSERT INTO Songs VALUES (9, "Girl on Fire");
+INSERT INTO Songs VALUES (8, "Check Yes or No");
+INSERT INTO Songs VALUES (7, "Country Girl");
+INSERT INTO Songs VALUES (6, "Don't take the girl");
+INSERT INTO Songs VALUES (5, "STAY");
+INSERT INTO Songs VALUES (4, "Into you");
+INSERT INTO Songs VALUES (3, "Perfect");
+INSERT INTO Songs VALUES (2, "Everything I wanted");
+INSERT INTO Songs VALUES (1, "Lose you to Love me");
+
+-Matched songs with singer
+SELECT singers.fullname, songs.name 
+FROM singers AS 
+JOIN songs
+ON singers.id = songs.id;
+
+-matched age, song with artist
+SELECT singers.fullname, singers.age, songs.name AS song_title
+FROM singers
+LEFT OUTER JOIN songs
+ON singers.id = songs.id;
