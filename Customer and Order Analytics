@@ -1,0 +1,65 @@
+/*selecting all from customers table*/
+SELECT * 
+FROM BIT_DB.customers;
+
+/*list of orders made in Jan*/
+SELECT *
+FROM BIT_DB.JanSales
+WHERE Length (orderid) = 6 
+AND orderid <> 'order id';
+
+/* Amount of orders placed in Jan*/
+SELECT COUNT(orderid)
+FROM BIT_DB.JanSales
+WHERE length(orderid) = 6 
+AND orderid <> 'Order ID';
+
+/* JanSales for iPhone*/
+SELECT COUNT(orderid)
+FROM BIT_DB.JanSales
+WHERE Product='iPhone'
+AND length(orderid) = 6 
+AND orderid <> 'Order ID';
+
+/*customer account numbers for orders placed in Feb*/
+SELECT distinct acctnum
+FROM BIT_DB.customers
+INNER JOIN BIT_DB.FebSales
+ON BIT_DB.customers.order_id=BIT_DB.FebSales.orderID
+WHERE length (orderid)= 6
+AND orderid<>'order id';
+
+/*Cheapest product sold in Jan and price*/
+SELECT product, price
+FROM BIT_DB.JanSales
+GROUP BY product
+Order by price asc;
+
+/*Total revenue for each product sold in JAN*/
+SELECT product, SUM (quantity) * price AS REVENUE
+FROM BIT_DB.JanSales
+GROUP BY product;
+
+/*Products sold in Feb at 548 Lincoln St, Seattle, WA 98101, sum of quantity sold and total revenue*/
+SELECT product, SUM (quantity),SUM(quantity)* price AS REVENUE, location
+FROM BIT_DB.FebSales
+WHERE location LIKE  "548 Lincoln St, Seattle, WA 98101"
+GROUP BY product;
+
+/*Customers that ordered more than 2 products at a time in Feb and the average amount spent by those customers*/
+SELECT COUNT (distinct customers.acctnum), AVG (quantity*price)
+FROM BIT_DB.FebSales
+LEFT JOIN BIT_DB.customers
+ON BIT_DB.FebSales.orderID = BIT_DB.customers.order_id
+WHERE BIT_DB.FebSales.Quantity>2
+AND length (orderid)=6
+AND orderid<>'Order ID';
+
+/*Products sold in Los Angeles in February, and how many of each were sold*/
+ELECT distinct product, SUM (quantity)
+FROM BIT_DB.FebSales
+WHERE location like '%Los Angeles%'
+GROUP BY product;
+
+
+
