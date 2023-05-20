@@ -1,0 +1,72 @@
+/*reviewing table*/
+SELECT *
+FROM chinook.albums;
+
+/*reviewing table*/
+SELECT *
+FROM chinook.artists;
+
+/*reviewing table*/
+SELECT *
+FROM chinook.customers;
+
+/*reviewing table*/
+SELECT *
+FROM chinook.employees;
+
+/*reviewing table*/
+SELECT *
+FROM chinook.genres;
+
+/*reviewing table*/
+SELECT *
+FROM chinook.invoice_items;
+
+/*reviewing table*/
+SELECT *
+FROM chinook.tracks;
+
+/*reviewing table*/
+SELECT *
+FROM chinook.invoices;
+
+/*Shows total trackid sold and the sum of the unit price for each trackid*/
+SELECT Trackid, COUNT (quantity) as "quantity_sold", SUM(unitprice) AS "TOTAL"
+FROM chinook.invoice_items
+GROUP BY Trackid;
+
+/*shows artistid and title of song*/
+SELECT artistid, name, title
+FROM chinook.albums
+INNER JOIN chinook.artists
+WHERE chinook.albums.ArtistId = chinook.artists.ArtistId
+ORDER BY name;
+
+/*shows track name, how many sold and the total in all based on trackid*/
+SELECT chinook.invoice_items.TrackId, name, SUM(chinook.invoice_items.UnitPrice), SUM(quantity)
+FROM chinook.tracks
+Inner JOIN chinook.invoice_items
+WHERE chinook.invoice_items.TrackId = chinook.tracks.TrackId
+GROUP BY chinook.invoice_items.trackid;
+
+SELECT Trackid, SUM (unitprice) , quantity
+FROM chinook.invoice_items
+GROUP BY trackid;
+
+
+SELECT InvoiceDate, BillingCity, total
+FROM chinook.invoices
+Where InvoiceDate LIKE "%13-11%";
+
+/*10 best sale dates, billed cities and total amount*/
+SELECT InvoiceDate, Billingcity, total
+FROM chinook.invoices
+ORDER BY InvoiceDate Desc
+LIMIT 10;
+
+/*custommers from Boston ranging from 2009 through 2013*/
+SELECT InvoiceDate,Billingcity, total 
+FROM chinook.invoices
+Where Billingcity = "Boston"
+Order by InvoiceDate;
+
